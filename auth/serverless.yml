@@ -47,28 +47,28 @@ custom:
     # LOCAL DEV DB
     # dev:
     #   DB_HOST: localhost
-    #   DB_USER: snapcap
-    #   DB_PASS: jo8778we
-    #   DB_NAME: snapcap
+    #   DB_USER: 
+    #   DB_PASS: 
+    #   DB_NAME: 
 
     # AWS DEV DB
     dev:
       DB_HOST: snapjoshdev.c5otbzyqslmy.us-east-1.rds.amazonaws.com
-      DB_USER: Josh
-      DB_PASS: jo8778we
-      DB_NAME: snapcap
+      DB_USER: 
+      DB_PASS: 
+      DB_NAME: 
 
     staging:
       DB_HOST: snapcap.c1wh9i3tvv4d.us-east-1.rds.amazonaws.com
-      DB_USER: snapadmin
-      DB_PASS: JhaES4T1SOOpn91gfdkljnfv7kLlaZqVb
-      DB_NAME: snapcap
+      DB_USER: 
+      DB_PASS: 
+      DB_NAME: 
 
     production:
       DB_HOST: snapcap-1.cluster-cfwoguhxprqn.us-east-1.rds.amazonaws.com
       DB_USER: rotations-admin
-      DB_PASS: RjSDK1AcdsadddsSpLk$PpqAS!9AcdkmKLLllAeWwQnbc4skn22Q
-      DB_NAME: snapcap
+      DB_PASS: 
+      DB_NAME: 
 
   myVpc: ${self:custom.vpc.${self:custom.myStage}} # set the VPC accordingly to the given stage
   myEnvironment: ${self:custom.environment.${self:custom.myStage}} # helper var to set the env vars accordingly to the given stage
