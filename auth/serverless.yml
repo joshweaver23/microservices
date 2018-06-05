@@ -1,0 +1,120 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: auth
+
+custom:
+  defaultStage: dev # default stage to deploy to
+
+  myStage: ${opt:stage, self:custom.defaultStage} # deploy to the stage that is given via a CLI param with fallback to the default stage
+
+  vpc:
+    dev:
+      securityGroupIds:
+        - sg-6e68341a
+      subnetIds:
+        - subnet-5577ec08
+        - subnet-e1722c85
+        - subnet-baf19695
+
+    staging:
+      securityGroupIds:
+        - sg-28f2ee52
+      subnetIds:
+        - subnet-d9a776f4
+        - subnet-992eafd0
+        - subnet-ca518491
+
+    production:
+      securityGroupIds:
+        - sg-20f2ee5a
+      subnetIds:
+        - subnet-4aa67767
+        - subnet-5331b01a
+        - subnet-c051849b
+
+  environment:
+    # LOCAL DEV DB
+    # dev:
+    #   DB_HOST: localhost
+    #   DB_USER: snapcap
+    #   DB_PASS: jo8778we
+    #   DB_NAME: snapcap
+
+    # AWS DEV DB
+    dev:
+      DB_HOST: snapjoshdev.c5otbzyqslmy.us-east-1.rds.amazonaws.com
+      DB_USER: Josh
+      DB_PASS: jo8778we
+      DB_NAME: snapcap
+
+    staging:
+      DB_HOST: snapcap.c1wh9i3tvv4d.us-east-1.rds.amazonaws.com
+      DB_USER: snapadmin
+      DB_PASS: JhaES4T1SOOpn91gfdkljnfv7kLlaZqVb
+      DB_NAME: snapcap
+
+    production:
+      DB_HOST: snapcap-1.cluster-cfwoguhxprqn.us-east-1.rds.amazonaws.com
+      DB_USER: rotations-admin
+      DB_PASS: RjSDK1AcdsadddsSpLk$PpqAS!9AcdkmKLLllAeWwQnbc4skn22Q
+      DB_NAME: snapcap
+
+  myVpc: ${self:custom.vpc.${self:custom.myStage}} # set the VPC accordingly to the given stage
+  myEnvironment: ${self:custom.environment.${self:custom.myStage}} # helper var to set the env vars accordingly to the given stage
+
+provider:
+  name: aws
+  stage: ${self:custom.myStage}
+  profile: ${self:custom.myStage} # matches the stage name
+  runtime: nodejs6.10
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: ["ec2:DescribeInstances",
+               "ec2:CreateNetworkInterface",
+               "ec2:AttachNetworkInterface",
+               "ec2:DescribeNetworkInterfaces",
+               "ec2:DeleteNetworkInterface",
+               "ec2:DetachNetworkInterface",
+               "ec2:ModifyNetworkInterfaceAttribute",
+               "ec2:ResetNetworkInterfaceAttribute"
+              ]
+      Resource: "*"
+
+  vpc: ${self:custom.myVpc}
+
+  environment: ${self:custom.myEnvironment}
+
+  apiKeys:
+    - ${self:custom.myStage}-leadAssignmentAPIKey
+
+plugins:
+ - serverless-offline
+# to start serverless server: sls offline start
+
+functions:
+
+  # login
+  auth-create:
+    handler: auth.create
+    timeout: 5 # we need it to be fast-fast-fast
+    memorySize: 1024
+    events:
+      - http:
+          path: snapcap/webapi/auth
+          method: post
+          integration: lambda-proxy
+          cors: true
+          private: true
+
+  
