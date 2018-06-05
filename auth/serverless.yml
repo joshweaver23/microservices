@@ -21,27 +21,27 @@ custom:
   vpc:
     dev:
       securityGroupIds:
-        - sg-6e68341a
+        - sg-
       subnetIds:
-        - subnet-5577ec08
-        - subnet-e1722c85
-        - subnet-baf19695
+        - subnet-
+        - subnet-
+        - subnet-
 
     staging:
       securityGroupIds:
-        - sg-28f2ee52
+        - sg-
       subnetIds:
-        - subnet-d9a776f4
-        - subnet-992eafd0
-        - subnet-ca518491
+        - subnet-
+        - subnet-
+        - subnet-
 
     production:
       securityGroupIds:
-        - sg-20f2ee5a
+        - sg-
       subnetIds:
-        - subnet-4aa67767
-        - subnet-5331b01a
-        - subnet-c051849b
+        - subnet-
+        - subnet-
+        - subnet-
 
   environment:
     # LOCAL DEV DB
