@@ -7,7 +7,6 @@ const auth = require( './lib/auth' );
 const snap = require( './lib/snap' );
 
 module.exports.create = ( event, context, callback ) => {
-  // POST : Create a rotation with name, hashId, notes, active
 
   // make sure the request is legitimate
   if ( !snap.isSnap( event, context ) ) return callback( null, prepareResponse( 400, "Invalid request", {} ) ); // error, return 400

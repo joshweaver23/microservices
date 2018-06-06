@@ -1,15 +1,15 @@
 /**
- * Handles auth CRUD
+ * Handles checkout CRUD
  * Created by josh on 6/5/18.
  */
 
 'use strict';
 
 const db = require( './db.js' );
-const authModel = require( '../models/auth.js' );
+const checkoutModel = require( '../models/checkout.js' );
 const helpers = require( './helpers' );
 
-class Auth {
+class Checkout {
   constructor() {}
 
   create( event ) {
@@ -17,7 +17,7 @@ class Auth {
     return db.connect()
       .then( () => {
         // BUSINESS LOGIC GOES HERE 
-        // HANDLE AUTH 
+        // HANDLE CHECKOUT 
         // LOG USER LOGIN DETAILS
       } )
       .then( res => {
@@ -36,7 +36,7 @@ class Auth {
 
 }
 
-module.exports = new Auth();
+module.exports = new Checkout();
 
 // CREATE
-// curl -d '{"userName":"jamesBeard","passWord":"***********"}' -H "Content-Type: application/json" -H "x-api-key: d41d8cd98f00b204e9800998ecf8427e" -X POST http://localhost:3000/snapcap/webapi/auth
+// curl -d '{}' -H "Content-Type: application/json" -H "x-api-key: d41d8cd98f00b204e9800998ecf8427e" -X POST http://localhost:3000/snapcap/webapi/checkout
