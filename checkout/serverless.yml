@@ -41,19 +41,19 @@ custom:
 
     # AWS DEV DB
     dev:
-      DB_HOST: snapjoshdev.c5otbzyqslmy.us-east-1.rds.amazonaws.com
+      DB_HOST: 
       DB_USER: 
       DB_PASS: 
       DB_NAME: 
 
     staging:
-      DB_HOST: snapcap.c1wh9i3tvv4d.us-east-1.rds.amazonaws.com
+      DB_HOST: 
       DB_USER: 
       DB_PASS: 
       DB_NAME: 
 
     production:
-      DB_HOST: snapcap-1.cluster-cfwoguhxprqn.us-east-1.rds.amazonaws.com
+      DB_HOST: 
       DB_USER: 
       DB_PASS: 
       DB_NAME: 
